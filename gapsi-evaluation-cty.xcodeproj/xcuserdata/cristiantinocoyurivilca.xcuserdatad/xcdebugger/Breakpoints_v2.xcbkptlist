@@ -3,4 +3,102 @@
    uuid = "142A35EE-76E9-4F20-BB94-B45A3E1A8943"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B2C2275-62AA-4357-926D-CACEF1F757FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gapsi-evaluation-cty/MainVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "sucess(data:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B2C2275-62AA-4357-926D-CACEF1F757FE - af839ce52c80c352"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in gapsi_evaluation_cty.MainVC.sucess(data: Any) -&gt; ()"
+                  moduleName = "gapsi-evaluation-cty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cristiantinocoyurivilca/Documents/iosProjects/gapsi-evaluation-cty/gapsi-evaluation-cty/MainVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "2B2C2275-62AA-4357-926D-CACEF1F757FE - af839ce52c80c390"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in gapsi_evaluation_cty.MainVC.sucess(data: Any) -&gt; ()"
+                  moduleName = "gapsi-evaluation-cty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cristiantinocoyurivilca/Documents/iosProjects/gapsi-evaluation-cty/gapsi-evaluation-cty/MainVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5D6F193-CDA9-4A9B-AD26-16F096D2507E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gapsi-evaluation-cty/MainVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D5D6F193-CDA9-4A9B-AD26-16F096D2507E - c32221369f806bb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "gapsi_evaluation_cty.MainVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "gapsi-evaluation-cty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cristiantinocoyurivilca/Documents/iosProjects/gapsi-evaluation-cty/gapsi-evaluation-cty/MainVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "368">
+               </Location>
+               <Location
+                  uuid = "D5D6F193-CDA9-4A9B-AD26-16F096D2507E - c32221369f806a28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "gapsi_evaluation_cty.MainVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "gapsi-evaluation-cty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cristiantinocoyurivilca/Documents/iosProjects/gapsi-evaluation-cty/gapsi-evaluation-cty/MainVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "368">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -9,24 +9,30 @@ import Foundation
 
 public class ProductDTO : Codable
 {
-    var status : String
-    var message : String
-    var data : [Product]
+    var responseStatus : String
+    var responseMessage : String
+    var sortStrategy : String
+    var domainCode : String
+    var keyword : String
+    var item : Item
     
     init () {
-        status = ""
-        message = ""
-        data = []
+        responseStatus = ""
+        responseMessage = ""
+        sortStrategy = ""
+        domainCode = ""
+        keyword = ""
+        item = Item()
     }
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        status = try container.decode(String.self, forKey: .status)
-        message = try container.decode(String.self, forKey: .message)
-        data = []
-        if let data = try container.decodeIfPresent([Product].self, forKey: .data) {
-            self.data = data
-        }
+        responseStatus = try container.decode(String.self, forKey: .responseStatus)
+        responseMessage = try container.decode(String.self, forKey: .responseMessage)
+        sortStrategy = try container.decode(String.self, forKey: .sortStrategy)
+        domainCode = try container.decode(String.self, forKey: .domainCode)
+        keyword = try container.decode(String.self, forKey: .keyword)
+        item = try container.decodeIfPresent(Item.self, forKey: .item) ?? Item()
     }
      
 }

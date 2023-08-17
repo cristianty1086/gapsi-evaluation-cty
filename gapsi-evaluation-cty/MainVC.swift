@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainVC : UIViewController, UITableViewDataSource, RequestProtocol {
+class MainVC : UIViewController, UITableViewDataSource, UITableViewDelegate, RequestProtocol {
     
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var tableSuggested: UITableView!
@@ -20,6 +20,10 @@ class MainVC : UIViewController, UITableViewDataSource, RequestProtocol {
     override func viewDidLoad() {
         tableSuggested.dataSource = self
         tableProduct.dataSource = self
+        
+        tableSuggested.delegate = self
+        tableProduct.delegate = self
+        
         populate()
         
         // register cell
@@ -33,16 +37,6 @@ class MainVC : UIViewController, UITableViewDataSource, RequestProtocol {
         if (_suggested != nil) {
             suggested = _suggested!.suggested_list
         }
-        
-        let prod = Product()
-        prod.title = "Juguete tayloy 12 para niños, marca 2022"
-        prod.price = "$ 45.0"
-        prod.image = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"
-        products.append(prod)
-        products.append(prod)
-        products.append(prod)
-        // --
-        
     }
     
     @IBAction func onBuscar(_ sender: Any) {
@@ -60,7 +54,7 @@ class MainVC : UIViewController, UITableViewDataSource, RequestProtocol {
         }
         
         suggested.insert(txtSearch.text!, at: 0)
-        var suggestedDTO = SuggestedDTO()
+        let suggestedDTO = SuggestedDTO()
         suggestedDTO.suggested_list = suggested
         Utilities.setSuggested(suggesteds: suggestedDTO)
         tableSuggested.reloadData()
@@ -99,9 +93,11 @@ class MainVC : UIViewController, UITableViewDataSource, RequestProtocol {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellProduct",
                                                          for: indexPath) as! CellProduct
             let item = self.products[indexPath.row]
-            cell.txtTitle?.text = item.title
-            cell.txtPrice?.text = item.price
-            Utilities.downloadImage(from: URL(string: item.image)!, imageView: cell.imgProduct)
+            cell.txtTitle?.text = item.name
+            cell.txtPrice?.text = "$ " + String(item.price)
+            if (item.image != "") {
+                Utilities.downloadImage(from: URL(string: item.image)!, imageView: cell.imgProduct)
+            }
             return cell
         } else {
             return UITableViewCell()
@@ -109,17 +105,46 @@ class MainVC : UIViewController, UITableViewDataSource, RequestProtocol {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView == tableSuggested) {
+            let sugerencia = self.suggested[indexPath.row]
+            txtSearch.text = sugerencia
+            
+            // get request
+            let page = "1"
+            let query = txtSearch.text
+            let strUrl = "https://00672285.us-south.apigw.appdomain.cloud/demo-gapsi/search?&query="
+                        + query! + "&page=" + page
+            print(strUrl)
+            let urlWS = URL(string: strUrl)
+            let key = "adb8204d-d574-4394-8c1a-53226a40876e"
+            Utilities.sendGetRequest(protocolo: self,
+                                     url: urlWS!,
+                                     type: ProductDTO.self,
+                                     ibmKey: key)
+        }
+    }
+    
     // Request Protocol
     func sucess(data: Any) {
         
         if let productoDTO = data as? ProductDTO {
-            if (productoDTO.status != "success") {
-                error(msg: productoDTO.message)
+            if (productoDTO.responseStatus != "PRODUCT_FOUND_RESPONSE") {
+                error(msg: productoDTO.responseMessage)
                 return
             }
             
-            products = productoDTO.data
-            tableProduct.reloadData()
+            let stacks = productoDTO.item.props.pageProps.initialData.searchResult.itemStacks
+            
+            if (stacks.count > 0) {
+                products = stacks[0].items.filter{
+                    (producto) -> Bool in
+                    producto.price != 0
+                }
+            }
+            DispatchQueue.main.async {
+                self.tableProduct.reloadData()
+            }
         }
         
     }

@@ -9,21 +9,27 @@ import Foundation
 
 class Product : Codable {
     
-    var title:String
-    var price:String
+    var id:String
+    var name:String
+    var price:Int64
     var image:String
+    var priceInfo:PriceInfo
     
     init() {
-        title = ""
-        price = ""
+        id = ""
+        name = ""
+        price = 0
         image = ""
+        priceInfo = PriceInfo()
     }
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
-        price = try container.decodeIfPresent(String.self, forKey: .price) ?? ""
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? ""
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        price = try container.decodeIfPresent(Int64.self, forKey: .price) ?? 0
         image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
+        priceInfo = try container.decodeIfPresent(PriceInfo.self, forKey: .priceInfo) ?? PriceInfo()
     }
     
 }
